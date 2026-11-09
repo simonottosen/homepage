@@ -20,3 +20,10 @@ python3 -m http.server 8000
 3. Custom domains → add `simonottosen.dk` (and `www.simonottosen.dk`).
 
 Every push to `main` redeploys.
+
+## Logo
+
+`logo.svg` (transparent) and `favicon.svg` (dark tile) are an SO monogram built from the
+S and O outlines of [Newsreader](https://github.com/productiontype/Newsreader), the
+site's title typeface (SIL Open Font License). The S overlaps the O with a small
+knockout gap.
