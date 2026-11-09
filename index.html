@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simon Ottosen</title>
+  <meta name="description" content="Simon Ottosen builds small, careful tools that make Danish public data useful: home prices, taxes, broadcast archives, award flights and airport queues.">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="canonical" href="https://simonottosen.dk/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://simonottosen.dk/">
+  <meta property="og:title" content="Simon Ottosen">
+  <meta property="og:description" content="Small, careful tools for homes, taxes, archives, flights and airport queues.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="mark" href="/" aria-label="Simon Ottosen, home">
+      <img src="/favicon.svg" width="28" height="28" alt="">
+    </a>
+    <a class="pill" href="https://github.com/simonottosen" rel="me">GitHub</a>
+  </header>
+
+  <main>
+    <section class="intro">
+      <hr class="rule">
+      <h1>Simon Ottosen</h1>
+      <p class="tagline">Small tools, built with care, for the questions I kept asking myself.</p>
+    </section>
+
+    <section class="stage" id="projects" aria-label="Projects">
+      <div class="stage-inner">
+
+        <article class="card" data-pattern="houses" data-seed="11"
+                 style="--bg:#E54F10; --ink:255,255,194; --desc-alpha:.75">
+          <div class="card-body">
+            <div class="art"><canvas width="312" height="192" aria-hidden="true"></canvas></div>
+            <button class="card-hit" type="button" aria-expanded="false" aria-label="Hjem: show details"></button>
+            <h2 class="card-title">Hjem</h2>
+            <div class="card-desc">
+              <p>Data-driven price estimates for any Danish home, built from recent nearby sales and public valuations.</p>
+              <a class="visit" href="https://hjem.simonottosen.dk/">hjem.simonottosen.dk <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-pattern="ledger" data-seed="23"
+                 style="--bg:#F6EBD9; --ink:82,71,51; --desc-alpha:.8">
+          <div class="card-body">
+            <div class="art"><canvas width="312" height="192" aria-hidden="true"></canvas></div>
+            <button class="card-hit" type="button" aria-expanded="false" aria-label="Skat: show details"></button>
+            <h2 class="card-title">Skat</h2>
+            <div class="card-desc">
+              <p>Danish tax calculator and budget planner for 2024–2026, with wealth projections decades ahead.</p>
+              <a class="visit" href="https://skat.simonottosen.dk/">skat.simonottosen.dk <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card two-line" data-pattern="waves" data-seed="37"
+                 style="--bg:#0A90D2; --ink:174,255,255; --desc-alpha:.85">
+          <div class="card-body">
+            <div class="art"><canvas width="312" height="192" aria-hidden="true"></canvas></div>
+            <button class="card-hit" type="button" aria-expanded="false" aria-label="DR Arkiv: show details"></button>
+            <h2 class="card-title">DR<br>Arkiv</h2>
+            <div class="card-desc">
+              <p>Search and play decades of DR’s historic TV and radio, with bookmarks and resume where you left off.</p>
+              <a class="visit" href="https://drarkiv.simonottosen.dk/">drarkiv.simonottosen.dk <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card two-line" data-pattern="routes" data-seed="41"
+                 style="--bg:#53F399; --ink:0,77,0; --desc-alpha:.75">
+          <div class="card-body">
+            <div class="art"><canvas width="312" height="192" aria-hidden="true"></canvas></div>
+            <button class="card-hit" type="button" aria-expanded="false" aria-label="Award Finder: show details"></button>
+            <h2 class="card-title">Award<br>Finder</h2>
+            <div class="card-desc">
+              <p>Finds SAS award-seat availability and notifies you the moment a matching seat opens up.</p>
+              <a class="visit" href="https://award-finder.simonottosen.dk/">award-finder.simonottosen.dk <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-pattern="queue" data-seed="53"
+                 style="--bg:#211F1E; --ink:246,235,217; --desc-alpha:.7">
+          <div class="card-body">
+            <div class="art"><canvas width="312" height="192" aria-hidden="true"></canvas></div>
+            <button class="card-hit" type="button" aria-expanded="false" aria-label="Waitport: show details"></button>
+            <h2 class="card-title">Waitport</h2>
+            <div class="card-desc">
+              <p>Live and machine-learning predicted security queue times for eleven European airports.</p>
+              <a class="visit" href="https://waitport.com/">waitport.com <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="prose">
+      <hr class="rule">
+      <h3>About</h3>
+      <p>I’m Simon. I like turning public data that’s technically available into something you can actually use: what a home is worth, what you’ll owe in tax, how long the line at airport security will be.</p>
+      <p>Everything above is a side project I designed, built and still run myself. The code for most of it is on <a href="https://github.com/simonottosen">GitHub</a>.</p>
+    </section>
+  </main>
+
+  <footer class="footer">© <span id="year">2026</span> Simon Ottosen</footer>
+
+  <script src="/patterns.js" defer></script>
+  <script src="/cards.js" defer></script>
+</body>
+</html>

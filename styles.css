@@ -1,0 +1,275 @@
+:root {
+  --text: rgb(23, 23, 23);
+  --muted: rgb(115, 115, 115);
+  --faint: rgb(163, 163, 163);
+  --rule: rgb(229, 229, 229);
+  --page: #ffffff;
+  --pill: rgb(245, 245, 244);
+  --serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--text);
+  font: 16px/24px var(--sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+a { color: inherit; }
+
+/* ---------- Top bar ---------- */
+.topbar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  z-index: 50;
+  pointer-events: none;
+}
+.topbar > * { pointer-events: auto; }
+.mark { display: block; line-height: 0; border-radius: 6px; }
+.mark img { display: block; }
+.pill {
+  font-size: 14px;
+  line-height: 20px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: var(--pill);
+  color: rgb(68, 64, 60);
+  text-decoration: none;
+  transition: background-color .2s;
+}
+.pill:hover { background: rgb(231, 229, 228); }
+
+/* ---------- Intro ---------- */
+.intro {
+  text-align: center;
+  padding: 72px 16px 0;
+}
+.rule {
+  width: 40px;
+  height: 1px;
+  margin: 0 auto 32px;
+  border: 0;
+  background: var(--rule);
+}
+h1 {
+  margin: 0;
+  font: 400 50px/1.1 var(--serif);
+  letter-spacing: -1.25px;
+  color: var(--text);
+}
+.tagline {
+  max-width: 300px;
+  margin: 16px auto 0;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--muted);
+}
+
+/* ---------- Card stage ---------- */
+.stage {
+  position: relative;
+  height: 600px;            /* JS sets the real height */
+  margin-top: 24px;
+  transition: height .6s var(--ease);
+}
+.stage-inner {
+  position: absolute;
+  left: 50%;
+  top: 300px;               /* JS sets the real origin */
+  width: 0;
+  height: 0;
+  transform-origin: 0 0;
+  transition: top .6s var(--ease), transform .6s var(--ease);
+}
+
+.card {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: center;
+  transition: transform .6s var(--spring);
+  will-change: transform;
+}
+
+.card-body {
+  position: relative;
+  width: 228px;
+  height: 288px;
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--bg);
+  transition:
+    width .5s var(--spring),
+    height .5s var(--spring),
+    transform .3s var(--ease);
+}
+
+.card:not(.is-open):hover .card-body { transform: translateY(-6px); }
+.stage.has-open .card:not(.is-open):hover .card-body { transform: translateY(-4px); }
+
+.art {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  width: 312px;
+  height: 192px;
+  transform-origin: left top;
+  transform: scale(0.628205);
+  transition: transform .5s var(--spring), left .5s var(--spring), top .5s var(--spring);
+  pointer-events: none;
+}
+.art canvas { display: block; width: 312px; height: 192px; }
+
+.card-hit {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.card-hit:focus { outline: none; }
+.card-hit:focus-visible { box-shadow: inset 0 0 0 2px rgba(var(--ink), .9); }
+
+.card-title {
+  position: absolute;
+  left: 16px;
+  top: 242px;
+  margin: 0;
+  font: 400 28px/30px var(--serif);
+  letter-spacing: -0.2px;
+  color: rgb(var(--ink));
+  white-space: nowrap;
+  pointer-events: none;
+  transition:
+    font-size .4s var(--spring),
+    line-height .4s var(--spring),
+    top .5s var(--spring),
+    left .5s var(--spring);
+}
+.card.two-line .card-title { top: 212px; }
+
+.card-desc {
+  position: absolute;
+  left: 24px;
+  top: 280px;
+  width: 312px;
+  z-index: 2;
+  opacity: 0;
+  filter: blur(4px);
+  visibility: hidden;
+  transition: opacity .35s var(--ease), filter .35s var(--ease), visibility 0s linear .35s;
+}
+.card.two-line .card-desc { top: 316px; }
+.card-desc p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+  color: rgba(var(--ink), var(--desc-alpha));
+}
+.visit {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 14px;
+  line-height: 20px;
+  color: rgb(var(--ink));
+  text-decoration: underline;
+  text-decoration-color: rgba(var(--ink), .35);
+  text-underline-offset: 3px;
+  transition: text-decoration-color .2s, opacity .2s;
+}
+.visit:hover { text-decoration-color: rgb(var(--ink)); }
+.visit:focus-visible { outline: 2px solid rgb(var(--ink)); outline-offset: 3px; border-radius: 2px; }
+
+/* Open state */
+.card.is-open .card-body { width: 360px; height: 464px; }
+.card.is-open .art { left: 24px; top: 24px; transform: scale(1); }
+.card.is-open .card-title { left: 24px; top: 232px; font-size: 36px; line-height: 38px; }
+.card.is-open .card-desc {
+  opacity: 1;
+  filter: blur(0);
+  visibility: visible;
+  transition: opacity .45s var(--ease) .12s, filter .45s var(--ease) .12s, visibility 0s;
+}
+
+/* ---------- Prose ---------- */
+.prose {
+  max-width: 344px;
+  margin: 56px auto 0;
+  padding: 0 0;
+}
+@media (min-width: 420px) { .prose { max-width: 452px; } }
+@media (min-width: 720px) { .prose { max-width: 452px; } }
+.prose .rule { margin-bottom: 56px; }
+.prose h3 {
+  margin: 0 0 16px;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+}
+.prose p {
+  margin: 0 0 16px;
+  color: rgb(64, 64, 64);
+}
+.prose a {
+  text-decoration: underline;
+  text-decoration-color: var(--faint);
+  text-underline-offset: 3px;
+}
+.prose a:hover { text-decoration-color: var(--text); }
+
+.footer {
+  margin: 96px 0 40px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--faint);
+}
+
+@media (max-width: 480px) {
+  .intro { padding-top: 76px; }
+  h1 { font-size: 42px; letter-spacing: -1px; }
+  .prose { padding: 0 16px; max-width: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+  }
+}
+
+/* First paint: place cards without transitions, then let them rise in. */
+.stage.no-anim .card,
+.stage.no-anim .stage-inner,
+.stage.no-anim { transition: none !important; }
+
+@keyframes card-in {
+  from { opacity: 0; filter: blur(6px); translate: 0 16px; }
+  to   { opacity: 1; filter: blur(0); translate: 0 0; }
+}
+.card-body { animation: card-in .7s var(--ease) both; }
+.card:nth-child(1) .card-body { animation-delay: .05s; }
+.card:nth-child(2) .card-body { animation-delay: .10s; }
+.card:nth-child(3) .card-body { animation-delay: .15s; }
+.card:nth-child(4) .card-body { animation-delay: .20s; }
+.card:nth-child(5) .card-body { animation-delay: .25s; }
