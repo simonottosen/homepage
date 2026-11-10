@@ -17,6 +17,8 @@
     { x: 33, y: -128, r: 1 },
     { x: 196, y: -163, r: 5 },
   ];
+  // Midpoint between the outermost card centres (≈0, the fan is symmetric).
+  const FAN_MID = (FAN[0].x + FAN[FAN.length - 1].x + W) / 2;
   // Small fan the other cards drop into while one is open.
   const REST = [
     { r: -4, dy: 0 },
@@ -32,7 +34,7 @@
     const s = Math.min(1, Math.max(0.52, vw / 720));        // stage scale
     const avail = (vw - 24) / s;                             // usable width in stage units
     const xf = Math.min(1, Math.max(0.35, (avail - 268) / 616)); // horizontal fan squeeze
-    const target = Math.min(OW, vw - 32);                    // open card width on screen
+    const target = Math.min(OW, vw - 80);                    // open card width on screen
     const e = target / (OW * s);                             // extra scale for open card
     return { s, xf, e };
   }
@@ -46,7 +48,9 @@
       cards.forEach((card, i) => {
         const f = FAN[i];
         card.style.zIndex = i + 1;
-        card.style.transform = `translate(${f.x * xf}px, ${f.y}px) rotate(${f.r}deg)`;
+        // Squeeze card centres towards the fan's middle so it stays centred.
+        const cx = FAN_MID + (f.x + W / 2 - FAN_MID) * xf;
+        card.style.transform = `translate(${cx - W / 2}px, ${f.y}px) rotate(${f.r}deg)`;
       });
       bottom = 180;
     } else {
